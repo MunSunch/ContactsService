@@ -11,4 +11,6 @@ public interface ContactRepository {
     Contact save(Contact newContact) throws DatabaseConstrantException;
 
     Contact removeByEmail(String email) throws DatabaseConstrantException;
+
+    void saveToFile(List<String> contacts);
 }

@@ -4,10 +4,10 @@ import com.munsun.contacts.dto.in.ContactDtoIn;
 import com.munsun.contacts.dto.out.ContactDtoOut;
 import com.munsun.contacts.enums.ItemMainMenu;
 import com.munsun.contacts.mapping.Mapper;
-import com.munsun.contacts.mapping.impl.ConsoleMapper;
 import com.munsun.contacts.services.View;
 import com.munsun.contacts.services.impl.forms.SaveContactForm;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -16,9 +16,15 @@ import java.util.stream.Collectors;
 @Service
 @RequiredArgsConstructor
 public class Console implements View {
-    private static final String DEFAULT_PREFIX_INPUT = ">>>";
-    private String fillHeaderSymbol = "=";
     private final Mapper consoleMapper;
+
+    @Value("${console.input.prefix}")
+    private String prefixInput;
+    @Value("${console.header.fill_symbol}")
+    private String fillHeaderSymbol;
+    @Value("${console.header.fill_symbol.count}")
+    private Integer countRepeatFillHeaderSymbol;
+
     @Override
     public ItemMainMenu showMainMenu() {
         printHeader("Главное меню");
@@ -26,12 +32,11 @@ public class Console implements View {
                                 .map(ItemMainMenu::getDescription)
                                 .collect(Collectors.toList());
         printListItems(items);
-        Integer indexItem = Integer.parseInt(input(DEFAULT_PREFIX_INPUT));
+        Integer indexItem = Integer.parseInt(input(prefixInput));
         return consoleMapper.toItemMainMenu(indexItem);
     }
 
     private void printHeader(String header) {
-        int countRepeatFillHeaderSymbol = 14;
         String lineFillHeader = fillHeaderSymbol.repeat(countRepeatFillHeaderSymbol);
         System.out.println(lineFillHeader+header+lineFillHeader);
     }

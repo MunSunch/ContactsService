@@ -13,4 +13,6 @@ public interface Service {
     ContactDtoOut addContact(ContactDtoIn contactDtoIn) throws DuplicateContactException;
 
     ContactDtoOut removeContactByEmail(String email) throws ContactNotFoundException;
+
+    void importContacts();
 }

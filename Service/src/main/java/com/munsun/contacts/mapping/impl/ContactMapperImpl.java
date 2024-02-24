@@ -4,6 +4,7 @@ import com.munsun.contacts.dto.in.ContactDtoIn;
 import com.munsun.contacts.dto.out.ContactDtoOut;
 import com.munsun.contacts.mapping.ContactMapper;
 import com.munsun.contacts.model.Contact;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -34,5 +35,19 @@ public class ContactMapperImpl implements ContactMapper {
                 contactDtoIn.patronymic(),
                 contactDtoIn.phoneNumber(),
                 contactDtoIn.email());
+    }
+
+    @Override
+    public List<String> toStringContacts(List<ContactDtoOut> contacts) {
+        return contacts.stream()
+                .map(this::toStringContact)
+                .collect(Collectors.toList());
+    }
+
+    private String toStringContact(ContactDtoOut contactDtoOut) {
+        String separator = ";";
+        return contactDtoOut.fullName() + separator
+                +contactDtoOut.phoneNumber() + separator
+                +contactDtoOut.email();
     }
 }

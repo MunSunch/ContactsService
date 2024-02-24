@@ -43,4 +43,9 @@ public class ContactService implements Service {
             throw new ContactNotFoundException();
         }
     }
+
+    @Override
+    public void importContacts() {
+        repository.saveToFile(contactMapper.toStringContacts(getContacts()));
+    }
 }

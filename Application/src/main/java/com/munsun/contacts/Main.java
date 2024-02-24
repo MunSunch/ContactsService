@@ -1,7 +1,6 @@
 package com.munsun.contacts;
 
 import com.munsun.contacts.configurations.PresenterContextConfiguration;
-import com.munsun.contacts.impl.PresenterImpl;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 public class Main {

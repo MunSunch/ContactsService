@@ -3,14 +3,22 @@ package com.munsun.contacts.repositories.impl;
 import com.munsun.contacts.exceptions.DatabaseConstrantException;
 import com.munsun.contacts.model.Contact;
 import com.munsun.contacts.repositories.ContactRepository;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Repository;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 @Repository
 public class ContactRepositoryImpl implements ContactRepository {
+    @Value("${contacts.file.path}")
+    private String pathToFile;
+
     List<Contact> contacts = new ArrayList<>();
     @Override
     public List<Contact> getAllContacts() {
@@ -51,5 +59,18 @@ public class ContactRepositoryImpl implements ContactRepository {
             }
         }
         return index;
+    }
+
+    @Override
+    public void saveToFile(List<String> contacts) {
+        String absolutePathToFile = new File(pathToFile).getAbsolutePath();
+        try(BufferedWriter writer = new BufferedWriter(new FileWriter(absolutePathToFile))) {
+            for(var contact: contacts) {
+                writer.write(contact);
+                writer.write("\n");
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

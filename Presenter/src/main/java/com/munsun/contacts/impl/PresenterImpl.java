@@ -63,6 +63,6 @@ public class PresenterImpl implements Presenter {
     }
 
     private void importFile() {
-        System.out.println("Не реализовано!");
+        service.importContacts();
     }
 }
