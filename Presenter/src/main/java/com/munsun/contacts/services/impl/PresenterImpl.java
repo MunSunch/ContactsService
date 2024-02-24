@@ -1,6 +1,6 @@
-package com.munsun.contacts.impl;
+package com.munsun.contacts.services.impl;
 
-import com.munsun.contacts.Presenter;
+import com.munsun.contacts.services.Presenter;
 import com.munsun.contacts.exceptions.ContactNotFoundException;
 import com.munsun.contacts.exceptions.DuplicateContactException;
 import com.munsun.contacts.services.Service;
@@ -8,8 +8,6 @@ import com.munsun.contacts.services.View;
 import com.munsun.contacts.dto.in.ContactDtoIn;
 import com.munsun.contacts.dto.out.ContactDtoOut;
 import com.munsun.contacts.enums.ItemMainMenu;
-import com.munsun.contacts.services.impl.Console;
-import com.munsun.contacts.services.impl.ContactService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 

@@ -13,4 +13,6 @@ public interface ContactMapper {
     Contact toContact(ContactDtoIn contactDtoIn);
 
     List<String> toStringContacts(List<ContactDtoOut> contacts);
+
+    Contact toContact(String strContact);
 }

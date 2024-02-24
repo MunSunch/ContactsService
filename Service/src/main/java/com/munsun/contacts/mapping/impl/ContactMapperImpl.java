@@ -5,6 +5,7 @@ import com.munsun.contacts.dto.out.ContactDtoOut;
 import com.munsun.contacts.mapping.ContactMapper;
 import com.munsun.contacts.model.Contact;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -49,5 +50,13 @@ public class ContactMapperImpl implements ContactMapper {
         return contactDtoOut.fullName() + separator
                 +contactDtoOut.phoneNumber() + separator
                 +contactDtoOut.email();
+    }
+
+    @Override
+    public Contact toContact(String strContact) {
+        String[] parts = strContact.split(";");
+        String[] partsFullName = parts[0].split(" ");
+        return new Contact(partsFullName[0], partsFullName[1], partsFullName[2],
+                parts[1], parts[2]);
     }
 }

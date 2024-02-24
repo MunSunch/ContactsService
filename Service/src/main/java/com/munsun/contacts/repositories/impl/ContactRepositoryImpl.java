@@ -3,7 +3,11 @@ package com.munsun.contacts.repositories.impl;
 import com.munsun.contacts.exceptions.DatabaseConstrantException;
 import com.munsun.contacts.model.Contact;
 import com.munsun.contacts.repositories.ContactRepository;
+import com.munsun.contacts.repositories.InitializingContacts;
+import jakarta.annotation.PostConstruct;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Repository;
 
 import java.io.BufferedWriter;
@@ -16,10 +20,18 @@ import java.util.Optional;
 
 @Repository
 public class ContactRepositoryImpl implements ContactRepository {
-    @Value("${contacts.file.path}")
-    private String pathToFile;
+    @Value("${contacts.file.output.path}")
+    private String pathToOutputFile;
 
-    List<Contact> contacts = new ArrayList<>();
+    private InitializingContacts initializingContacts;
+    List<Contact> contacts;
+
+    @Autowired
+    public ContactRepositoryImpl(InitializingContacts initializingContacts) {
+        this.initializingContacts = initializingContacts;
+        contacts = initializingContacts.init();
+    }
+
     @Override
     public List<Contact> getAllContacts() {
         return new ArrayList<>(contacts);
@@ -63,7 +75,7 @@ public class ContactRepositoryImpl implements ContactRepository {
 
     @Override
     public void saveToFile(List<String> contacts) {
-        String absolutePathToFile = new File(pathToFile).getAbsolutePath();
+        String absolutePathToFile = new File(pathToOutputFile).getAbsolutePath();
         try(BufferedWriter writer = new BufferedWriter(new FileWriter(absolutePathToFile))) {
             for(var contact: contacts) {
                 writer.write(contact);

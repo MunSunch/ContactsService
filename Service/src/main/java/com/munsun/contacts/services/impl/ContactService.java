@@ -10,6 +10,7 @@ import com.munsun.contacts.model.Contact;
 import com.munsun.contacts.repositories.ContactRepository;
 import com.munsun.contacts.services.Service;
 import lombok.RequiredArgsConstructor;
+import org.springframework.context.annotation.Profile;
 
 import java.util.List;
 
