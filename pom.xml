@@ -20,6 +20,9 @@
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <org.projectlombok.lombok.version>1.18.30</org.projectlombok.lombok.version>
+        <org.springframework.spring-context.version>6.1.2</org.springframework.spring-context.version>
+        <jakarta.annotation.jakarta.annotation-api.version>2.1.1</jakarta.annotation.jakarta.annotation-api.version>
     </properties>
 
     <dependencyManagement>
@@ -27,20 +30,20 @@
             <dependency>
                 <groupId>org.projectlombok</groupId>
                 <artifactId>lombok</artifactId>
-                <version>1.18.30</version>
+                <version>${org.projectlombok.lombok.version}</version>
                 <scope>provided</scope>
             </dependency>
 
             <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-context</artifactId>
-                <version>6.1.2</version>
+                <version>${org.springframework.spring-context.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>jakarta.annotation</groupId>
                 <artifactId>jakarta.annotation-api</artifactId>
-                <version>2.1.1</version>
+                <version>${jakarta.annotation.jakarta.annotation-api.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
