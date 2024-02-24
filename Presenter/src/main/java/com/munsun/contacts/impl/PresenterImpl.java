@@ -10,12 +10,16 @@ import com.munsun.contacts.dto.out.ContactDtoOut;
 import com.munsun.contacts.enums.ItemMainMenu;
 import com.munsun.contacts.services.impl.Console;
 import com.munsun.contacts.services.impl.ContactService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+@Component
+@RequiredArgsConstructor
 public class PresenterImpl implements Presenter {
-    private Service service = new ContactService();
-    private View view = new Console();
+    private final Service service;
+    private final View view;
 
     @Override
     public void start() {

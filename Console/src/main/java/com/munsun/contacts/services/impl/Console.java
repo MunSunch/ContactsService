@@ -7,14 +7,18 @@ import com.munsun.contacts.mapping.Mapper;
 import com.munsun.contacts.mapping.impl.ConsoleMapper;
 import com.munsun.contacts.services.View;
 import com.munsun.contacts.services.impl.forms.SaveContactForm;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 
 import java.util.*;
 import java.util.stream.Collectors;
 
+@Service
+@RequiredArgsConstructor
 public class Console implements View {
     private static final String DEFAULT_PREFIX_INPUT = ">>>";
     private String fillHeaderSymbol = "=";
-    private Mapper consoleMapper = new ConsoleMapper();
+    private final Mapper consoleMapper;
     @Override
     public ItemMainMenu showMainMenu() {
         printHeader("Главное меню");

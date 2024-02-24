@@ -3,11 +3,13 @@ package com.munsun.contacts.repositories.impl;
 import com.munsun.contacts.exceptions.DatabaseConstrantException;
 import com.munsun.contacts.model.Contact;
 import com.munsun.contacts.repositories.ContactRepository;
+import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+@Repository
 public class ContactRepositoryImpl implements ContactRepository {
     List<Contact> contacts = new ArrayList<>();
     @Override

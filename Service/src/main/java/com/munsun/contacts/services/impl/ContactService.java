@@ -6,17 +6,18 @@ import com.munsun.contacts.exceptions.ContactNotFoundException;
 import com.munsun.contacts.exceptions.DatabaseConstrantException;
 import com.munsun.contacts.exceptions.DuplicateContactException;
 import com.munsun.contacts.mapping.ContactMapper;
-import com.munsun.contacts.mapping.impl.ContactMapperImpl;
 import com.munsun.contacts.model.Contact;
 import com.munsun.contacts.repositories.ContactRepository;
-import com.munsun.contacts.repositories.impl.ContactRepositoryImpl;
 import com.munsun.contacts.services.Service;
+import lombok.RequiredArgsConstructor;
 
 import java.util.List;
 
+@org.springframework.stereotype.Service
+@RequiredArgsConstructor
 public class ContactService implements Service {
-    private ContactRepository repository = new ContactRepositoryImpl();
-    private ContactMapper contactMapper = new ContactMapperImpl();
+    private final ContactRepository repository;
+    private final ContactMapper contactMapper;
 
     @Override
     public List<ContactDtoOut> getContacts() {

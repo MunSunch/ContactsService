@@ -4,10 +4,12 @@ import com.munsun.contacts.dto.in.ContactDtoIn;
 import com.munsun.contacts.dto.out.ContactDtoOut;
 import com.munsun.contacts.mapping.ContactMapper;
 import com.munsun.contacts.model.Contact;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Component
 public class ContactMapperImpl implements ContactMapper {
     @Override
     public List<ContactDtoOut> toContactDtoOut(List<Contact> contacts) {

@@ -5,11 +5,13 @@ import com.munsun.contacts.dto.out.ContactDtoOut;
 import com.munsun.contacts.enums.ItemMainMenu;
 import com.munsun.contacts.mapping.Mapper;
 import com.munsun.contacts.services.impl.forms.SaveContactForm;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+@Component
 public class ConsoleMapper implements Mapper {
     @Override
     public ItemMainMenu toItemMainMenu(Integer indexItem) {
